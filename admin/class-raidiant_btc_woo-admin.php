@@ -99,5 +99,33 @@ class Raidiant_btc_woo_Admin {
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/raidiant_btc_woo-admin.js', array( 'jquery' ), $this->version, false );
 
 	}
+	 public function add_admin_menu_function(){
+
+       // add_action('admin_init', array($this,'add_register_settings_bms'));
+
+           add_menu_page(
+		    'Accessible Core',
+			__('Accessible Core'),
+			'manage_options',
+			'accessible-core',
+			array( $this, 'add_options_page' ),
+			'dashicons-admin-post',
+			72
+	    );
+
+        add_submenu_page(
+		'accessible-core',
+		'Missing ALT\'s',
+		'Missing ALT\'s',
+		'manage_options',
+		'accessible-core-missing-alts',
+			array( $this, 'accessible_core_missing_alt_platform' )
+	);
+    }
+	
+	public function add_options_page(){
+
+    include("partials/raidiant-settings.php");
+   }
 
 }

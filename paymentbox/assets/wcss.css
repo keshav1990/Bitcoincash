@@ -1,0 +1,1024 @@
+
+html, body {
+font-family : Arial, Helvetica, sans-serif;
+font-size : 12px;
+text-align : center;
+color : #333333;
+margin : 0 0;
+}
+H1, H2, H3, H4, H5 {
+font-size : 100%;
+font-weight : normal;
+}
+UL, OL {
+list-style : none;
+}
+li {
+list-style-type : none;
+}
+A {
+color : #333333;
+text-decoration : none;
+}
+A:hover {
+color : #333333;
+text-decoration : underline;
+}
+A:focus {
+outline : none;
+}
+.pageHeadings {
+font : 20px Arial, Helvetica, sans-serif;
+color : #333333;
+text-decoration : none;
+border-bottom : 1px dashed #cccccc;
+width : 100%;
+}
+.cellBorder {
+border : 1px solid #cccccc;
+}
+:focus {
+outline : 0;
+}
+fieldset, img {
+border : 0;
+}
+q:before, q:after {
+content : '';
+}
+input, textarea, select {
+font-family : inherit;
+font-size : inherit;
+font-weight : inherit;
+}
+.clr {
+clear : both;
+}
+.lF {
+float : left;
+}
+.rF {
+float : right;
+}
+#wrapper {
+width : 930px;
+margin : 0 auto;
+}
+#header {
+height : 930px;
+height : 137px;
+overflow : hidden;
+background : url(images/header_rpt.gif) repeat-x;
+}
+.logo {
+float : left;
+background : url(images/logo.gif) no-repeat;
+width : 400px;/*370px;*/
+height : 137px;
+margin : 0 0;
+}
+.logo a {
+display : block;
+text-indent : -9999px;
+width : 370px;
+height : 137px;
+}
+.topSearchBox {
+/*width : 328px;*/
+width : 100%;
+float : right;
+padding : 0 20px 0 0;
+text-align : left;
+overflow : hidden;
+font-family : tahoma;
+font-size : 12px;
+color : #d5f0fb;
+height : 90px;
+}
+.searchTxt {
+background : #7cceee;
+color : #ffffff;
+border : 1px solid #79caeb;
+height : 20px;
+width : 117px;
+}
+.topSearchBox a {
+font-family : tahoma;
+font-size : 12px;
+color : #fff;
+text-decoration : none;
+}
+.topSearchBox a:hover {
+text-decoration : underline;
+}
+.headerRight {
+float : right;
+text-align : right;
+width : 469px;
+height : 137px;
+}
+.navbar {
+width : 469px;
+height : 47px;
+float : right;
+text-align : right;
+}
+ul#nav {
+width : 469px;
+height : 47px;
+background : url(images/nav.gif) no-repeat;
+position : relative;
+padding : 0 0;
+margin : 0 0;
+}
+ul#nav li {
+float : left;
+list-style : none;
+padding : 0;
+margin : 0;
+list-style-type : none;
+}
+ul#nav li a {
+position : absolute;
+text-indent : -9999px;
+text-decoration : none;
+border : none !important ;
+top : 0;
+height : 47px;
+}
+ul#nav li#nav-1 a {
+left : 0;
+width : 104px;
+background : url("images/nav.gif") no-repeat 0 0;
+}
+ul#nav li#nav-2 a {
+left : 104px;
+width : 142px;
+background : url("images/nav.gif") no-repeat -104px 0;
+}
+ul#nav li#nav-3 a {
+left : 246px;
+width : 104px;
+background : url("images/nav.gif") no-repeat -246px 0;
+}
+ul#nav li#nav-4 a {
+left : 350px;
+width : 119px;
+background : url("images/nav.gif") no-repeat -350px 0;
+}
+ul#nav li#nav-1 a:hover {
+background-position : 0 -47px;
+}
+ul#nav li#nav-2 a:hover {
+background-position : -104px -47px;
+}
+ul#nav li#nav-3 a:hover {
+background-position : -246px -47px;
+}
+ul#nav li#nav-4 a:hover {
+background-position : -350px -47px;
+}
+ul#nav li#nav-1 a.active {
+background-position : 0 -47px;
+}
+ul#nav li#nav-2 a.active {
+background-position : -104px -47px;
+}
+ul#nav li#nav-3 a.active {
+background-position : -246px -47px;
+}
+ul#nav li#nav-4 a.active {
+background-position : -350px -47px;
+}
+#ContentArea {
+width : 930px;
+overflow : hidden;
+background : url(images/content_bg.gif) repeat-y;
+}
+#ContentArea2 {
+width : 930px;
+}
+.contentLeft {
+width : 197px;
+float : left;
+overflow : hidden;
+}
+#ContentBtm {
+width : 930px;
+height : 8px;
+overflow : hidden;
+background : url(images/content_btm.gif) no-repeat top;
+}
+.orangeHead1 {
+font : bold 14px Arial, Helvetica, sans-serif;
+color : #ffa303;
+text-decoration : none;
+}
+.lft_link {
+padding-left : 15px;
+border-bottom : 1px dashed #d8d8d8;
+
+}
+.lft_link a {
+	text-decoration : none;
+	/*color : #333333;*/
+color:#034E8A;
+	font-weight: bold;
+}
+.lft_link a:hover {
+text-decoration : underline;
+}
+.lft_link1 {
+padding-left : 15px;
+border-bottom : 1px dashed #d8d8d8;
+
+}
+.lft_link1 a {
+	text-decoration : none;
+	color : #333333;
+
+	
+}
+.lft_link a:hover {
+text-decoration : underline;
+}
+
+
+
+
+
+
+.lftSublinks {
+font-family : Arial, Helvetica, sans-serif;
+font-size : 11px;
+color : #3ba0da;
+padding-left : 10px;
+}
+.lftSublinks a {
+font-family : Arial, Helvetica, sans-serif;
+font-size : 11px;
+color : #3ba0da;
+}
+.lftSublinks a:hover {
+text-decoration : underline;
+}
+.contentRight {
+width : 725px;
+float : right;
+overflow : hidden;
+text-align : left;
+}
+.contentRight a:hover {
+text-decoration : none;
+}
+.topBanner {
+width : 725px;
+height : 303px;
+overflow : hidden;
+margin : 0 0;
+padding : 0 0;
+}
+.bluBox {
+width : 725px;
+}
+.bluBoxTop {
+background : #c5e1ed url(images/blu_box_bg.jpg) repeat-x top;
+width : 725px;
+overflow : hidden;
+padding-top : 10px;
+text-align : left;
+padding-bottom : 6px;
+}
+.bluBoxBtm {
+background : url(images/blubx_btm.jpg) no-repeat;
+overflow : hidden;
+width : 725px;
+height : 8px;
+}
+.box1 {
+float : left;
+width : 228px;
+background : url(images/sep.jpg) no-repeat top right;
+margin-left : 12px;
+color : #034e8a;
+padding-right : 12px;
+width : 213px;
+font-size : 11px;
+overflow : hidden;
+}
+.box1 a.readMore {
+color : #ffffff;
+float : right;
+font-size : 11px;
+font-weight : bold;
+text-decoration : none;
+}
+.box1 a.readMore:hover {
+text-decoration : underline;
+}
+.box1 a {
+text-decoration : none;
+color : #034e8a;
+}
+.box1 a:hover {
+text-decoration : underline;
+}
+.box2 {
+float : left;
+width : 228px;
+margin-left : 12px;
+color : #034e8a;
+padding-right : 12px;
+width : 213px;
+font-size : 11px;
+}
+.box2 img {
+margin-right : 5px;
+}
+.box2 a {
+text-decoration : none;
+color : #034e8a;
+}
+.box2 a:hover {
+text-decoration : underline;
+}
+.box2 a.readMore {
+color : #ffffff;
+float : right;
+font-size : 11px;
+font-weight : bold;
+text-decoration : none;
+}
+.box2 a.readMore:hover {
+text-decoration : underline;
+}
+.specialBox {
+width : 725px;
+padding : 10px 4px 10px 4px;
+width : 717px;
+overflow : hidden;
+text-align : left;
+margin : 0 0;
+}
+.specialBox p.head {
+font : bold 16px Arial, Helvetica, sans-serif;
+color : #ffa303;
+text-decoration : none;
+width : 100%;
+height : 30px;
+border-bottom : 1px dashed #d8d8d8;
+margin : 0 0;
+}
+.splBOx1 {
+width : 355px;
+float : left;
+padding : 8px 8px 8px 8px;
+width : 339px;
+background : url(images/spl_sep.gif) no-repeat right;
+margin-top : 12px;
+}
+.splBOx1 img {
+margin-right : 10px;
+}
+.splBOx1 p {
+margin : 0 0;
+}
+a.proName {
+font-family : Arial, Helvetica, sans-serif;
+font-size : 14px;
+color : #4ab7e4;
+text-decoration : none;
+}
+a.proName:hover {
+text-decoration : underline;
+}
+.price {
+font-family : Arial, Helvetica, sans-serif;
+font-size : 14px;
+color : #4ab7e4;
+text-decoration : none;
+font-weight : bold;
+}
+a.cart {
+color : #4ab7e4;
+text-decoration : underline;
+width : 90px;
+padding-left : 25px;
+width : 65px;
+background : url(images/cart.gif) no-repeat left;
+background-position : 8px;
+margin-left : 130px;
+}
+a.cart:hover {
+text-decoration : none;
+}
+.splBOx2 {
+width : 355px;
+float : left;
+padding : 8px 8px 8px 15px;
+width : 332px;
+margin-top : 12px;
+}
+.splBOx2 p {
+margin : 0 0;
+}
+.splBOx2 img {
+margin-right : 10px;
+}
+.health_newsBOx {
+width : 352px;
+float : left;
+text-align : left;
+overflow : hidden;
+margin-left : 6px;
+padding-right : 10px;
+width : 342px;
+}
+p.head2 {
+width : 90%;
+font : bold 16px Arial, Helvetica, sans-serif;
+color : #ffa303;
+text-decoration : none;
+height : 30px;
+border-bottom : 1px dashed #d8d8d8;
+}
+.health_newsBOx a {
+color : #3ba0da;
+text-decoration : none;
+}
+.health_newsBOx a:hover {
+text-decoration : underline;
+}
+#footer {
+width : 930px;
+margin-top : 15px;
+background : url(images/footer_bg.gif) repeat-x top;
+padding : 21px 15px 5px 15px;
+width : 900px;
+font-size : 11px;
+overflow : hidden;
+}
+#footer a {
+text-decoration : none;
+color : #666666;
+}
+#footer a:hover {
+text-decoration : underline;
+}
+p.footerRight {
+text-align : left;
+width : 470px;
+float : right;
+}
+.border {
+border-bottom-width : 1px;
+border-bottom-style : dotted;
+border-bottom-color : #999999;
+}
+.formbox {
+background-color : #ffffff;
+font-family : Verdana, Arial, Helvetica, sans-serif;
+font-size : 11px;
+color : #666666;
+border : 1px solid #cccccc;
+}
+.form_btns {
+font-family : Arial, Helvetica, sans-serif;
+font-size : 11px;
+color : #333333;
+text-decoration : none;
+text-align : center;
+vertical-align : middle;
+height : 25px;
+background-image : url(images/bt_bg.gif);
+background-repeat : repeat-x;
+background-position : left top;
+font-weight : bold;
+border-top-width : 0;
+border-right-width : 0;
+border-bottom-width : 0;
+border-left-width : 0;
+}
+a.cartInner {
+color : #333333;
+text-decoration : underline;
+width : 90px;
+padding-left : 25px;
+width : 65px;
+background : url(images/blk_cart.gif) no-repeat left;
+background-position : 8px;
+}
+a.cartInner:hover {
+text-decoration : none;
+}
+.health_newsBOx p {
+margin : 0 0;
+}
+.proName1 {
+font : 18px Arial, Helvetica, sans-serif;
+color : #666666;
+text-decoration : none;
+}
+.form_btns123 {
+font-family : Arial, Helvetica, sans-serif;
+font-size : 11px;
+color : #ffffff;
+text-decoration : none;
+text-align : center;
+vertical-align : middle;
+height : 25px;
+background : #999999;
+font-weight : bold;
+border-top-width : 0;
+border-right-width : 0;
+border-bottom-width : 0;
+border-left-width : 0;
+}
+.wht_headings {
+font : bold 12px Tahoma;
+color : #ffffff;
+text-decoration : none;
+}
+.alpha ul {
+	list-style : none;
+	float:left;
+	margin: 0px;
+	padding: 0px;
+}
+.alpha ul li {
+display : inline;
+float : left;
+}
+.alpha ul li A {
+display : block;
+border : 1px solid #999999;
+margin-right : 1px;
+width : 10px;
+font-size : 11px;
+height : 15px;
+text-align : center;
+padding : 2px 1px;
+}
+.alpha ul li A:hover {
+text-decoration : none;
+color : #ffffff;
+background : #7a7b7b;
+}
+.alpha ul li .act2 {
+text-decoration : none;
+color : #ffffff;
+background : #7a7b7b;
+}
+.smaltxt {
+font-size : 11px;
+}
+
+.smaltxtthankyou {
+font-size : 13px;
+}
+.red {
+font : 11px Arial, Helvetica, sans-serif;
+color : #ff3300;
+}
+.link3 {
+color : #333333;
+}
+.link3 a {
+color : #3ba0da;
+text-decoration : none;
+}
+.link3 a:hover {
+color : #3ba0da;
+text-decoration : underline !important;
+}
+.yellowBox {
+width : 725px;
+padding : 8px 8px 8px 8px;
+width : 709px;
+overflow : hidden;
+text-align : left;
+margin : 10px 0 10px 0;
+}
+.rightDotted {
+border-right : 1px solid #cccccc;
+}
+a.cartSplpro {
+color : #4ab7e4;
+text-decoration : underline;
+width : 90px;
+padding-left : 25px;
+width : 65px;
+background : url(images/blk_cart.gif) no-repeat left;
+}
+a.cartSplpro:hover {
+text-decoration : none;
+}
+.img1 {
+	padding-top: 2px;
+	margin-right: 4px;
+}
+
+.bull2 {
+	margin: 0px;
+	padding: 0px;
+}
+.bull2  ul {
+	margin: 0px;
+	padding: 0px;
+}
+.bull2  ul li {
+	margin: 0px;
+	padding: 0px;
+	float: left;
+	list-style: none;
+}
+.bull2  ul li A {
+	display: block;
+	background: url(images/blue_arrow.gif) no-repeat left 5px;
+	padding-left: 12px;
+}
+.bull2  ul li A:hover {}
+
+.menu1{
+display: none;
+margin-left:8px;
+margin-bottom:2px;
+background: url("") no-repeat scroll 6px 6px transparent;
+list-style-type: none;
+margin: 0 12 2px;
+padding: 1px 0 0 17px;	
+font-family: Arial,Helvetica,sans-serif;
+font-size: 11px;
+}
+
+.menu2{
+font-weight: bold;
+color: #034E8A;
+font-family: Arial,Helvetica,sans-serif;
+text-decoration: none;
+font-size: 12px;
+list-style-type: none;
+margin: 0 0 4px;
+padding: 1px 0 1px 30px;
+}
+
+
+                                              /*****bitcoin*****/
+
+
+.wrapper {
+    cursor: pointer;
+    float: left;
+    position: relative;
+    text-align: center;
+    width: 20%;
+}
+
+.wrapper .tooltip {
+   background: hsl(60, 76%, 84%) none repeat scroll 0 0;
+     border: 2px solid #efde9c;
+  color: #fff;
+  display: block;
+  left: 100%;
+  margin-bottom: -15px;
+  opacity: 0;
+  padding: 10px;
+  pointer-events: none;
+  position: absolute;
+  width: 300px;
+  -webkit-transform: translateY(10px);
+     -moz-transform: translateY(10px);
+      -ms-transform: translateY(10px);
+       -o-transform: translateY(10px);
+          transform: translateY(10px);
+  -webkit-transition: all .25s ease-out;
+     -moz-transition: all .25s ease-out;
+      -ms-transition: all .25s ease-out;
+       -o-transition: all .25s ease-out;
+          transition: all .25s ease-out;
+  -webkit-box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.28);
+     -moz-box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.28);
+      -ms-box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.28);
+       -o-box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.28);
+          box-shadow: 0 0 12px #939393;
+		  text-align:center;
+		  color:#2c2c2c;
+		     z-index: 2147483647;
+			 top: -43px;
+}
+
+/* This bridges the gap so you can mouse into the tooltip without it disappearing */
+.wrapper .tooltip:before {
+  bottom: -20px;
+  content: " ";
+  display: block;
+  height: 20px;
+  left: 0;
+  position: absolute;
+  width: 100%;
+}  
+
+/* CSS Triangles - see Trevor's post */
+/*.wrapper .tooltip:after {
+  border-left: solid transparent 10px;
+  border-right: solid transparent 10px;
+  border-top: solid #1496bb 10px;
+  bottom: -10px;
+  content: " ";
+  height: 0;
+  left: 50%;
+  margin-left: -13px;
+  position: absolute;
+  width: 0;
+}*/
+  
+.wrapper:hover .tooltip {
+  opacity: 1;
+  pointer-events: auto;
+  -webkit-transform: translateY(0px);
+     -moz-transform: translateY(0px);
+      -ms-transform: translateY(0px);
+       -o-transform: translateY(0px);
+          transform: translateY(0px);
+}
+
+/* IE can just show/hide with no transition */
+.lte8 .wrapper .tooltip {
+  display: none;
+}
+
+.lte8 .wrapper:hover .tooltip {
+  display: block;
+}
+
+
+
+
+
+
+
+
+
+
+.bitcoin {
+    background: #fff none repeat scroll 0 0;
+    border-radius: 15px;
+    box-shadow: 0 0 12px #aaa;
+    display: inline-block;
+    margin: 5px auto;
+    max-width: 500px;
+    padding: 20px;
+    width: 100%;
+}
+
+.bitcoin_head {
+    float: left;
+    width: 100%;
+}
+
+.coin_no {
+    float: left;
+    width: 100%;
+}
+
+.bitcoin_head label {
+    float: left;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.bitcoin_head span {
+    font-weight: normal;
+}
+
+.bitcoin_logo {
+    float: right;
+    width: 50%;
+}
+
+.wrapper > img {
+    float: left;
+}
+
+.bitcoin_text a {
+    color: #4ab7e4;
+}
+
+
+.bitcoin_text {
+    float: left;
+    width: 79%;
+}
+
+.bitcoin_text ul {
+    padding: 0;
+}
+
+.bitcoin_text ul li {
+    text-align: left;
+}
+
+
+.send_exact {
+    float: left;
+    font-size: 13px;
+    font-weight: bold;
+    text-align: left;
+    width: 100%;
+}
+.tooltip.ws {
+    left: -45px;
+    margin: 0 !important;
+    top: 48px;
+    width: 77%;
+}
+.open_wallet {
+    float: left;
+    width: 100%;
+}
+
+
+
+
+.wrapper.wallet_text > a {
+    border: 1px solid #dedede;
+    border-radius: 3px;
+    color: hsl(0, 0%, 34%);
+    float: left;
+    padding: 5px 6px;
+}
+
+.wallet_btn {
+    float: left;
+    width: 27%;
+}
+
+.wrapper.wallet_text {
+    float: left;
+    width: 70%;
+}  
+  
+
+.wallet_btn > button {
+    border: 1px solid #d4dce4;
+    border-radius: 3px;
+    color: #263d52;
+    padding: 4px 10px;
+    transition: all 0.99s ease-in-out 0s;
+	    background: transparent;
+}
+
+.wallet_btn.wrapper > button:hover {
+    border-color: #bbb;
+	transition:none;
+}
+
+.copy_btn > button {
+    border: 1px solid #bbb;
+    border-radius: 3px;
+    color: #263d52;
+  padding: 4px 14px;
+    transition: all 0.99s ease-in-out 0s;
+	    background: transparent;
+}
+.copy_btn > button:hover {
+    border-color: #bbb;
+	transition:none;
+}
+
+
+.payment_btn > button {
+    background: rgb(247, 147, 26) none repeat scroll 0 0;
+    border: 1px solid #61bffd;
+    border-radius: 3px;
+    color: #fff;
+    padding: 4px 23px;
+    transition: all 0.99s ease-in-out 0s;
+}
+
+.open_wallet {
+    float: left;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.copy_adrs {
+    display: inline-block;
+    width: 100%;
+}
+
+.copy_adrs {
+    display: inline-block;
+    margin-top: 18px;
+    width: 100%;
+}
+
+
+.copy_btn {
+    float: left;
+    text-align: right;
+    width: 38%;
+}
+
+
+.payment_btn {
+    float: left;
+    padding-left: 10px;
+    text-align: left;
+    width: 50%;
+}
+
+
+.coin_img {
+    margin-top: 21px;
+    padding-right: 8px;
+    width: 19%;
+}
+
+.btn-spinner {
+    border-color: #fff #fff transparent;
+    border-image: none;
+    border-radius: 10px;
+    border-style: solid;
+    border-width: 2px;
+    display: inline-block;
+    height: 9px;
+    position: relative;
+    right: 5px;
+    top: 2px;
+    width: 9px;
+	  -webkit-animation: spin 1s linear 0s infinite normal;
+  -moz-animation: spin 1s linear 0s infinite normal;
+  -ms-animation: spin 1s linear 0s infinite normal;
+  -o-animation: spin 1s linear 0s infinite normal;
+  animation: spin 1s linear 0s infinite normal;
+}
+@keyframes spin {
+  0% { transform: rotate(360deg); }
+  100% { transform: rotate(0deg); }
+}
+@-webkit-keyframes spin {
+  0% {-webkit-transform: rotate(360deg); }
+  100% { -webkit-transform: rotate(0deg); }
+}
+@-ms-keyframes spin {
+  0% {-ms-transform: rotate(360deg); }
+  100% { -ms-transform: rotate(0deg); }
+}
+@-moz-keyframes spin {
+  0% { -moz-transform: rotate(360deg); }
+  100% { -moz-transform: rotate(0deg); }
+}
+@-o-keyframes spin {
+  0% { -o-transform: rotate(360deg); }
+  100% { -o-transform: rotate(0deg); }
+}
+.wallet_text .tooltip {
+    left: 6px;
+    text-align: left;
+    top: -77px;
+    width: 245px;
+}
+
+.tooltip p {
+    margin-top: 0;
+}
+.wallet_btn .tooltip {
+    left: -368px;
+    text-align: left;
+    top: -140px;
+    width: 345px;
+}
+.copy_btn .tooltip {
+    left: 43px;
+    top: -52px;
+    width: 225px;
+}
+.payment_btn .tooltip {
+    left: -49px;
+    text-align: justify;
+    top: -141px;
+}
+
+
+.send_info.wrapper {
+    width: auto;
+}
+
+.send_info .tooltip {
+    top: 22px;
+}
+
+.tooltip.code p {
+    float: left;
+    margin: 0;
+    padding-right: 9px;
+    text-align: justify;
+    width: 56%;
+}
+
+.bitcoin_logo.wrapper > img {
+    float: right;
+}
+                                           /*****bitcoin end*****/
+

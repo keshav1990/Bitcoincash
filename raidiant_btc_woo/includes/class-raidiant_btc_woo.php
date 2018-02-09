@@ -112,6 +112,29 @@ class Raidiant_btc_woo{
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-raidiant_btc_woo-i18n.php';
 
+
+
+// This loads necessary modules and selects best math library
+require_once(plugin_dir_path( dirname( __FILE__ ) ) . 'includes/libs/util/bcmath_Utils.php');
+require_once(plugin_dir_path( dirname( __FILE__ ) ) . 'includes/libs/util/gmp_Utils.php');
+require_once(plugin_dir_path( dirname( __FILE__ ) ) . 'includes/libs/CurveFp.php');
+require_once(plugin_dir_path( dirname( __FILE__ ) ) . 'includes/libs/Point.php');
+require_once(plugin_dir_path( dirname( __FILE__ ) ) . 'includes/libs/NumberTheory.php');
+require_once(plugin_dir_path( dirname( __FILE__ ) ) . 'includes/libs/ElectrumHelper.php');
+/*
+require_once(dirname(__FILE__) . '/bwwc-cron.php');
+require_once(dirname(__FILE__) . '/bwwc-mpkgen.php');
+require_once(dirname(__FILE__) . '/bwwc-utils.php');
+require_once(dirname(__FILE__) . '/bwwc-admin.php');
+require_once(dirname(__FILE__) . '/bwwc-render-settings.php');
+require_once(dirname(__FILE__) . '/bwwc-bitcoin-gateway.php');*/
+
+//Load cashaddr libs
+        require_once(plugin_dir_path( dirname( __FILE__ ) ) . 'includes/libs/cashaddr/Base32.php');
+        require_once(plugin_dir_path( dirname( __FILE__ ) ) . 'includes/libs/cashaddr/CashAddress.php');
+        require_once(plugin_dir_path( dirname( __FILE__ ) ) . 'includes/libs/cashaddr/Exception/Base32Exception.php');
+        require_once(plugin_dir_path( dirname( __FILE__ ) ) . 'includes/libs/cashaddr/Exception/CashAddressException.php');
+        require_once(plugin_dir_path( dirname( __FILE__ ) ) . 'includes/libs/cashaddr/Exception/InvalidChecksumException.php');
 		/**
 		 * The class responsible for defining all actions that occur in the admin area.
 		 */

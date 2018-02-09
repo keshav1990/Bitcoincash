@@ -27,7 +27,7 @@
  * @subpackage Raidiant_btc_woo/includes
  * @author     Raidiant <info@neowebsolution.com>
  */
-class Raidiant_btc_woo {
+class Raidiant_btc_woo{
 
 	/**
 	 * The loader that's responsible for maintaining and registering all hooks that power
@@ -75,6 +75,7 @@ class Raidiant_btc_woo {
 		$this->plugin_name = 'raidiant_btc_woo';
 
 		$this->load_dependencies();
+
 		$this->set_locale();
 		$this->define_admin_hooks();
 		$this->define_public_hooks();

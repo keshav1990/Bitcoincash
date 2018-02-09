@@ -20,7 +20,7 @@
  * @subpackage Raidiant_btc_woo/admin
  * @author     Raidiant <info@neowebsolution.com>
  */
-class Raidiant_btc_woo_Admin {
+class Raidiant_btc_woo_Admin  extends WC_Payment_Gateway{
 
 	/**
 	 * The ID of this plugin.
@@ -51,7 +51,17 @@ class Raidiant_btc_woo_Admin {
 
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
-
+       	$this->id = $this->plugin_name;
+		$this->method_title = __('Bitcoin Cash','raidiant_btc_woo');
+		$this->title = __('Bitcoin Cash','raidiant_btc_woo');
+		$this->has_fields = true;
+		$this->init_form_fields();
+		$this->init_settings();
+		$this->enabled = $this->get_option('enabled');
+		$this->title = $this->get_option('title');
+		$this->description = $this->get_option('description');
+        ///this is used to update the form settings
+        add_action('woocommerce_update_options_payment_gateways_'.$this->id, array($this, 'add_options_page'));
 	}
 
 	/**
@@ -99,29 +109,39 @@ class Raidiant_btc_woo_Admin {
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/raidiant_btc_woo-admin.js', array( 'jquery' ), $this->version, false );
 
 	}
-	 public function add_admin_menu_function(){
 
-       // add_action('admin_init', array($this,'add_register_settings_bms'));
+   	public function init_form_fields(){
+				$this->form_fields = array(
+					'enabled' => array(
+					'title' 		=> __( 'Enable/Disable', 'raidiant_btc_woo' ),
+					'type' 			=> 'checkbox',
+					'label' 		=> __( 'BTC', 'raidiant_btc_woo' ),
+					'default' 		=> 'yes'
+					),
+					'title' => array(
+						'title' 		=> __( 'Method Title', 'raidiant_btc_woo' ),
+						'type' 			=> 'text',
+						'description' 	=> __( 'This controls the title', 'raidiant_btc_woo' ),
+						'default'		=> __( 'BTC', 'raidiant_btc_woo' ),
+						'desc_tip'		=> true,
+					),
+					'description' => array(
+						'title' => __( 'Customer Message', 'raidiant_btc_woo' ),
+						'type' => 'textarea',
+						'css' => 'width:500px;',
+						'default' => 'Are you new to BTC need any help click on Red icon on sidebar',
+						'description' 	=> __( 'The message which you want it to appear to the customer in the checkout page.', 'raidiant_btc_woo' ),
+					),
+					'hide_text_box' => array(
+						'title' 		=> __( 'Hide The Payment Field', 'raidiant_btc_woo' ),
+						'type' 			=> 'checkbox',
+						'label' 		=> __( 'Hide', 'raidiant_btc_woo' ),
+						'default' 		=> 'no',
+						'description' 	=> __( 'If you do not need to show the text box for customers at all, enable this option.', 'raidiant_btc_woo' ),
+					),
 
-           add_menu_page(
-		    'Accessible Core',
-			__('Accessible Core'),
-			'manage_options',
-			'accessible-core',
-			array( $this, 'add_options_page' ),
-			'dashicons-admin-post',
-			72
-	    );
-
-        add_submenu_page(
-		'accessible-core',
-		'Missing ALT\'s',
-		'Missing ALT\'s',
-		'manage_options',
-		'accessible-core-missing-alts',
-			array( $this, 'accessible_core_missing_alt_platform' )
-	);
-    }
+			 );
+	}
 	
 	public function add_options_page(){
 

@@ -73,12 +73,10 @@ class Raidiant_btc_woo{
 			$this->version = '1.0.0';
 		}
 		$this->plugin_name = 'raidiant_btc_woo';
+    add_action( 'plugins_loaded', 	   array($this,make_woocommerce_data) );
+	$this->load_dependencies();
 
-		$this->load_dependencies();
 
-		$this->set_locale();
-		$this->define_admin_hooks();
-		$this->define_public_hooks();
 
 	}
 
@@ -138,18 +136,33 @@ require_once(dirname(__FILE__) . '/bwwc-bitcoin-gateway.php');*/
 		/**
 		 * The class responsible for defining all actions that occur in the admin area.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-raidiant_btc_woo-admin.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the public-facing
 		 * side of the site.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-raidiant_btc_woo-public.php';
-
+           	require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-raidiant_btc_woo-public.php';
 		$this->loader = new Raidiant_btc_woo_Loader();
+         	$this->set_locale();
 
+		$this->define_public_hooks();
+	}
+    	/*
+	 *	10. Add GoUrl gateway
+	 */
+	function raidiant_btc_woo_wc_gateway_add( $methods )
+	{
+		if (!in_array('Raidiant_btc_woo_Admin', $methods)) {
+			$methods[] = 'Raidiant_btc_woo_Admin';
+		}
+		return $methods;
 	}
 
+      public function make_woocommerce_data(){
+               	require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-raidiant_btc_woo-admin.php';
+                add_filter( 'woocommerce_payment_gateways',array($this,'raidiant_btc_woo_wc_gateway_add') );
+            	$this->define_admin_hooks();
+      }
 	/**
 	 * Define the locale for this plugin for internationalization.
 	 *
@@ -176,7 +189,7 @@ require_once(dirname(__FILE__) . '/bwwc-bitcoin-gateway.php');*/
 	 */
 	private function define_admin_hooks() {
 
-		$plugin_admin = new Raidiant_btc_woo_Admin( $this->get_plugin_name(), $this->get_version() );
+		//$plugin_admin = new Raidiant_btc_woo_Admin( $this->get_plugin_name(), $this->get_version() );
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );

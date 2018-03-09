@@ -64,6 +64,7 @@ class Raidiant_btc_woo_Admin  extends WC_Payment_Gateway{
 		foreach ( $this->settings as $setting_key => $value ) {
 			$this->$setting_key = $value;
 		}
+                  add_action('woocommerce_thankyou_' . $this->id, array($this, 'thankyou_page')); // hooks into the thank you page after payment
 
 		// further check of SSL if you want
 	  //	add_action( 'admin_notices', array( $this,	'do_ssl_check' ) );
@@ -318,25 +319,7 @@ class Raidiant_btc_woo_Admin  extends WC_Payment_Gateway{
 
             $ret_info_array = array();
 
-            if ($this->service_provider == 'blockchain_info') {
-                $bitcoin_addr_merchant = $this->bitcoin_addr_merchant;
-                $secret_key = substr(md5(microtime()), 0, 16);	# Generate secret key to be validate upon receiving IPN callback to prevent spoofing.
-                $callback_url = trailingslashit(home_url()) . "?wc-api=BWWC_Bitcoin&secret_key={$secret_key}&bitcoinway=1&src=bcinfo&order_id={$order_id}"; // http://www.example.com/?bitcoinway=1&order_id=74&src=bcinfo
-            BWWC__log_event(__FILE__, __LINE__, "Calling BWWC__generate_temporary_bitcoin_address__blockchain_info(). Payments to be forwarded to: '{$bitcoin_addr_merchant}' with callback URL: '{$callback_url}' ...");
-
-                // This function generates temporary bitcoin address and schedules IPN callback at the same
-                $ret_info_array = BWWC__generate_temporary_bitcoin_address__blockchain_info($bitcoin_addr_merchant, $callback_url);
-
-                /*
-            $ret_info_array = array (
-               'result'                      => 'success', // OR 'error'
-               'message'										 => '...',
-               'host_reply_raw'              => '......',
-               'generated_bitcoin_address'   => '18vzABPyVbbia8TDCKDtXJYXcoAFAPk2cj', // or false
-               );
-                */
-                $bitcoins_address = @$ret_info_array['generated_bitcoin_address'];
-            } elseif ($this->service_provider == 'electrum_wallet') {
+            if ($this->service_provider == 'electrum_wallet') {
                 // Generate bitcoin address for electron cash wallet provider.
                 /*
             $ret_info_array = array (
@@ -358,14 +341,6 @@ class Raidiant_btc_woo_Admin  extends WC_Payment_Gateway{
             }
 
             BWWC__log_event(__FILE__, __LINE__, "     Generated unique bitcoin cash address: '{$bitcoins_address}' for order_id " . $order_id);
-
-            if ($this->service_provider == 'blockchain_info') {
-                update_post_meta(
-                 $order_id, 			// post id ($order_id)
-                 'secret_key', 	// meta key
-                 $secret_key 		// meta value. If array - will be auto-serialized
-                 );
-            }
 
             update_post_meta(
              $order_id, 			// post id ($order_id)
@@ -417,20 +392,6 @@ class Raidiant_btc_woo_Admin  extends WC_Payment_Gateway{
             // Mark as on-hold (we're awaiting for bitcoins payment to arrive)
             $order->update_status('on-hold', __('Awaiting bitcoin cash payment to arrive', 'woocommerce'));
 
-            /*
-                        ///////////////////////////////////////
-                        // timbowhite's suggestion:
-                        // -----------------------
-                        // Mark as pending (we're awaiting for bitcoins payment to arrive), not 'on-hold' since
-                  // woocommerce does not automatically cancel expired on-hold orders. Woocommerce handles holding the stock
-                  // for pending orders until order payment is complete.
-                        $order->update_status('pending', __('Awaiting bitcoin payment to arrive', 'woocommerce'));
-
-                        // Me: 'pending' does not trigger "Thank you" page and neither email sending. Not sure why.
-                        //			Also - I think cancellation of unpaid orders needs to be initiated from cron job, as only we know when order needs to be cancelled,
-                        //			by scanning "on-hold" orders through 'assigned_address_expires_in_mins' timeout check.
-                        ///////////////////////////////////////
-            */
             // Remove cart
             $woocommerce->cart->empty_cart();
 
@@ -452,6 +413,54 @@ class Raidiant_btc_woo_Admin  extends WC_Payment_Gateway{
         }
 
 
+
+
+
+    public function payment_fields(){
+
+
+
+    if($this->hide_text_box !== 'yes'){
+	    ?>
+
+		<fieldset>
+			<p class="form-row form-row-wide">
+				<label for="<?php echo $this->id; ?>-admin-note"><?php echo esc_attr($this->description); ?> <span class="required">*</span></label>
+				<textarea id="<?php echo $this->id; ?>-admin-note" class="input-text" type="text" name="<?php echo $this->id; ?>-admin-note"></textarea>
+			</p>
+			<div class="clear"></div>
+		</fieldset>
+		<?php
+		}
+	}
+   public function thankyou_page($order_id){
+       $order = new WC_Order($order_id);
+
+       ob_start();
+       include("partials/raidiant-settings.php");
+       $instructions = ob_get_clean();
+            // Assemble detailed instructions.
+            $order_total_in_btc   = get_post_meta($order->id, 'order_total_in_btc', true); // set single to true to receive properly unserialized array
+            $bitcoins_address = get_post_meta($order->id, 'bitcoins_address', true); // set single to true to receive properly unserialized array
+            $bch_cashaddr = get_post_meta($order->id, 'bch_cashaddr', true); // set single to true to receive properly unserialized array
+
+
+            $instructions = $this->instructions;
+            $instructions = str_replace('[[value]]', $order_total_in_btc, $instructions);
+            $instructions = str_replace('{{{BITCOINS_ADDRESS}}}', $bitcoins_address, $instructions);
+            $instructions = str_replace('[[address]]', $bch_cashaddr, $instructions);
+            $instructions = str_replace('[[address_safe]]', urlencode($bch_cashaddr), $instructions);
+            $instructions =
+                str_replace(
+                    '{{{EXTRA_INSTRUCTIONS}}}',
+
+                    $this->instructions_multi_payment_str,
+                    $instructions
+                    );
+            $order->add_order_note(__("Order instructions: price=&#3647;{$order_total_in_btc}, incoming account:{$bitcoins_address}, cashddr: {$bch_cashaddr}", 'woocommerce'));
+
+            echo wpautop(wptexturize($instructions));
+   }
 	public function add_options_page(){
 
     include("partials/raidiant-settings.php");

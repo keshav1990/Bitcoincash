@@ -133,6 +133,7 @@ require_once(dirname(__FILE__) . '/bwwc-bitcoin-gateway.php');*/
         require_once(plugin_dir_path( dirname( __FILE__ ) ) . 'includes/libs/cashaddr/Exception/Base32Exception.php');
         require_once(plugin_dir_path( dirname( __FILE__ ) ) . 'includes/libs/cashaddr/Exception/CashAddressException.php');
         require_once(plugin_dir_path( dirname( __FILE__ ) ) . 'includes/libs/cashaddr/Exception/InvalidChecksumException.php');
+        require_once(plugin_dir_path( dirname( __FILE__ ) ) . 'includes/common-function_btc_woo-util.php');
 		/**
 		 * The class responsible for defining all actions that occur in the admin area.
 		 */

@@ -30,6 +30,8 @@ class Raidiant_btc_woo_Admin  extends WC_Payment_Gateway{
 	 * @var      string    $plugin_name    The ID of this plugin.
 	 */
 	private $plugin_name;
+	private $radient_settings;
+	static $radient_settingsStatic;
 
 	/**
 	 * The version of this plugin.
@@ -62,8 +64,17 @@ class Raidiant_btc_woo_Admin  extends WC_Payment_Gateway{
 
 		// Turn these settings into variables we can use
 		foreach ( $this->settings as $setting_key => $value ) {
+			$this->radient_settings[$setting_key] = $value;
 			$this->$setting_key = $value;
 		}
+        $this->radient_settings['funds_received_value_expires_in_mins'] = 60;
+        $this->radient_settings['assigned_address_expires_in_mins'] = 60;
+        $this->radient_settings['starting_index_for_new_btc_addresses'] = 2;
+        $this->radient_settings['max_unusable_generated_addresses'] = 20;
+        $this->radient_settings['max_blockchains_api_failures'] = 6;
+        $this->radient_settings['blockchain_api_timeout_secs'] = 60;
+        $this->radient_settings['reuse_expired_addresses'] = 0;
+        self::$radient_settingsStatic   = $this->radient_settings;
                   add_action('woocommerce_thankyou_' . $this->id, array($this, 'thankyou_page')); // hooks into the thank you page after payment
 
 		// further check of SSL if you want
@@ -255,6 +266,10 @@ class Raidiant_btc_woo_Admin  extends WC_Payment_Gateway{
 
 
 
+    public static function radient_woo_btc_get_settings(){
+        return self::$radient_settingsStatic;
+    }
+
         //-------------------------------------------------------------------
         /**
          * Process the payment and return the result
@@ -265,7 +280,7 @@ class Raidiant_btc_woo_Admin  extends WC_Payment_Gateway{
          */
         public function process_payment($order_id)
         {
-            //$bwwc_settings = BWWC__get_settings();
+            //$bwwc_settings = radient_woo_btc_get_settings();
             $order = new WC_Order($order_id);
 
             // TODO: Implement CRM features within store admin dashboard
@@ -276,7 +291,7 @@ class Raidiant_btc_woo_Admin  extends WC_Payment_Gateway{
             $order_meta['bw_s_addr'] = $order->get_formatted_shipping_address();
             $order_meta['bw_b_email'] = $order->billing_email;
             $order_meta['bw_currency'] = $order->order_currency;
-            $order_meta['bw_settings'] = $bwwc_settings;
+            $order_meta['bw_settings'] = $this->radient_settings;
             $order_meta['bw_store'] = plugins_url('', __FILE__);
 
 
@@ -286,12 +301,12 @@ class Raidiant_btc_woo_Admin  extends WC_Payment_Gateway{
             //
             // Calculate realtime bitcoin price (if exchange is necessary)
 
-            $exchange_rate = BWWC__get_exchange_rate_per_bitcoin(get_woocommerce_currency(), 'getfirst');
-            /// $exchange_rate = BWWC__get_exchange_rate_per_bitcoin (get_woocommerce_currency(), $this->exchange_rate_retrieval_method, $this->exchange_rate_type);
+            $exchange_rate = radient_woo_btc_get_exchange_rate_per_bitcoin(get_woocommerce_currency(), 'getfirst');
+            /// $exchange_rate = radient_woo_btc_get_exchange_rate_per_bitcoin (get_woocommerce_currency(), $this->exchange_rate_retrieval_method, $this->exchange_rate_type);
             if (!$exchange_rate) {
                 $msg = 'ERROR: Cannot determine Bitcoin Cash exchange rate. Possible issues: store server does not allow outgoing connections, exchange rate servers are blocking incoming connections or down. ' .
                        'You may avoid that by setting store currency directly to Bitcoin Cash (BCH)';
-                BWWC__log_event(__FILE__, __LINE__, $msg);
+                radient_woo_btc_log_event(__FILE__, __LINE__, $msg);
                 exit('<h2 style="color:red;">' . $msg . '</h2>');
             }
 
@@ -314,9 +329,10 @@ class Raidiant_btc_woo_Admin  extends WC_Payment_Gateway{
                 'order_datetime'  				=> date('Y-m-d H:i:s T'),
                 'requested_by_ip'					=> @$_SERVER['REMOTE_ADDR'],
                 'requested_by_ua'					=> @$_SERVER['HTTP_USER_AGENT'],
-                'requested_by_srv'				=> BWWC__base64_encode(serialize($_SERVER)),
+                'requested_by_srv'				=> radient_woo_btc_base64_encode(serialize($_SERVER)),
                 );
 
+               /// print_r($this->service_provider);
             $ret_info_array = array();
 
             if ($this->service_provider == 'electrum_wallet') {
@@ -329,18 +345,21 @@ class Raidiant_btc_woo_Admin  extends WC_Payment_Gateway{
                'generated_bitcoin_address'   => '18vzABPyVbbia8TDCKDtXJYXcoAFAPk2cj', // or false
                );
                 */
-                $ret_info_array = BWWC__get_bitcoin_address_for_payment__electrum(BWWC__get_next_available_mpk(), $order_info);
+               $test =  radient_woo_btc_generate_new_bitcoin_address_for_electrum_wallet();
+               print_r($test);
+               exit;
+                $ret_info_array = radient_woo_btc_get_bitcoin_address_for_payment__electrum(radient_woo_btc_get_next_available_mpk(), $order_info);
                 $bitcoins_address = @$ret_info_array['generated_bitcoin_address'];
                 $bch_cashaddr = @$ret_info_array['generated_bch_cashaddr'];
             }
 
             if (!$bitcoins_address) {
                 $msg = "ERROR: cannot generate bitcoin cash address for the order: '" . @$ret_info_array['message'] . "'";
-                BWWC__log_event(__FILE__, __LINE__, $msg);
+                radient_woo_btc_log_event(__FILE__, __LINE__, $msg);
                 exit('<h2 style="color:red;">' . $msg . '</h2>');
             }
 
-            BWWC__log_event(__FILE__, __LINE__, "     Generated unique bitcoin cash address: '{$bitcoins_address}' for order_id " . $order_id);
+            radient_woo_btc_log_event(__FILE__, __LINE__, "     Generated unique bitcoin cash address: '{$bitcoins_address}' for order_id " . $order_id);
 
             update_post_meta(
              $order_id, 			// post id ($order_id)

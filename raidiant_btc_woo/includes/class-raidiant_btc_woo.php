@@ -73,7 +73,7 @@ class Raidiant_btc_woo{
 			$this->version = '1.0.0';
 		}
 		$this->plugin_name = 'raidiant_btc_woo';
-    add_action( 'plugins_loaded', 	   array($this,make_woocommerce_data) );
+    add_action( 'plugins_loaded', 	   array($this,'make_woocommerce_data') );
 	$this->load_dependencies();
 
 
@@ -114,7 +114,7 @@ class Raidiant_btc_woo{
 
 // This loads necessary modules and selects best math library
 require_once(plugin_dir_path( dirname( __FILE__ ) ) . 'includes/libs/util/bcmath_Utils.php');
-require_once(plugin_dir_path( dirname( __FILE__ ) ) . 'includes/libs/util/gmp_Utils.php');
+#require_once(plugin_dir_path( dirname( __FILE__ ) ) . 'includes/libs/util/gmp_Utils.php');
 require_once(plugin_dir_path( dirname( __FILE__ ) ) . 'includes/libs/CurveFp.php');
 require_once(plugin_dir_path( dirname( __FILE__ ) ) . 'includes/libs/Point.php');
 require_once(plugin_dir_path( dirname( __FILE__ ) ) . 'includes/libs/NumberTheory.php');
@@ -190,7 +190,7 @@ require_once(dirname(__FILE__) . '/bwwc-bitcoin-gateway.php');*/
 	 */
 	private function define_admin_hooks() {
 
-		//$plugin_admin = new Raidiant_btc_woo_Admin( $this->get_plugin_name(), $this->get_version() );
+		$plugin_admin = new Raidiant_btc_woo_Admin( $this->get_plugin_name(), $this->get_version() );
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );

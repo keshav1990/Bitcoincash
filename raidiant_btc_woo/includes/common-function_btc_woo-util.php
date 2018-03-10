@@ -1,5 +1,5 @@
 <?php
-
+define('USE_EXT','BCMATH');
 //===========================================================================
 function radient_woo_btc_MATH_generate_bitcoin_address_from_mpk_v1($master_public_key, $key_index)
 {
@@ -42,7 +42,7 @@ function radient_woo_btc_get_bitcoin_address_for_payment__electrum($electrum_mpk
     global $wpdb;
 
     // status = "unused", "assigned", "used"
-    $btc_addresses_table_name     = $wpdb->prefix . 'bwwc_btc_addresses';
+    $btc_addresses_table_name     = $wpdb->prefix . 'radient_woo_btc_addresses';
     $origin_id                    = $electrum_mpk;
 
     $bwwc_settings = radient_woo_btc_get_settings();
@@ -296,15 +296,17 @@ function radient_woo_btc_get_bitcoin_address_for_payment__electrum($electrum_mpk
 function radient_woo_btc_get_next_available_mpk($bwwc_settings=false)
 {
     //global $wpdb;
-    //$btc_addresses_table_name = $wpdb->prefix . 'bwwc_btc_addresses';
+    //$btc_addresses_table_name = $wpdb->prefix . 'radient_woo_btc_addresses';
     // Scan DB for MPK which has number of in-use keys less than alowed limit
     // ...
 
-    if (!$bwwc_settings) {
+   if (!$bwwc_settings) {
         $bwwc_settings = radient_woo_btc_get_settings();
     }
+   //  print_r($bwwc_settings);
 
-    return @$bwwc_settings['electrum_mpks'][0];
+    //exit;
+    return @$bwwc_settings['electrum_mpk_saved'];
 }
 //===========================================================================
 
@@ -325,7 +327,7 @@ function radient_woo_btc_generate_new_bitcoin_address_for_electrum_wallet($bwwc_
 {
     global $wpdb;
 
-    $btc_addresses_table_name = $wpdb->prefix . 'bwwc_btc_addresses';
+    $btc_addresses_table_name = $wpdb->prefix . 'radient_woo_btc_addresses';
 
     if (!$bwwc_settings) {
         $bwwc_settings = radient_woo_btc_get_settings();
@@ -347,7 +349,7 @@ function radient_woo_btc_generate_new_bitcoin_address_for_electrum_wallet($bwwc_
             return $ret_info_array;
         }
     }
-
+   // echo $electrum_mpk;
     $origin_id = $electrum_mpk;
 
     $funds_received_value_expires_in_secs = $bwwc_settings['funds_received_value_expires_in_mins'] * 60;
@@ -727,6 +729,10 @@ function radient_woo_btc_function_not_exists($fname)
     return !function_exists($fname);
 }
 //===========================================================================
+
+function radient_woo_btc_update_settings($options)  {
+ update_option('radient_woo_payment',$options);
+}
 
 //===========================================================================
 function radient_woo_btc_update_exchange_rate_cache($currency_code, $requested_cache_method_type, $exchange_rate)
@@ -1176,4 +1182,10 @@ function charAt($data, $char)
 {
     return substr($data, $char, 1);
 }
+
+
+function radient_woo_btc_get_settings(){
+    return Raidiant_btc_woo_Admin::radient_woo_btc_get_settings();
+}
+
 //===========================================================================

@@ -1,7 +1,7 @@
-<?php
-
-namespace CashAddr\Exception;
-
-class CashAddressException extends \Exception
-{
-}
+<?php
+
+namespace CashAddr\Exception;
+
+class CashAddressException extends \Exception
+{
+}

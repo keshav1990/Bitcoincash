@@ -50,4 +50,6 @@
 // 157.36.236.212(40126) -> 2018-03-10, 7:44:36 UTC|BWWC_VERSION/BWWC_EDITION|common-function_btc_woo-util.php(21)|: Neither GMP nor BCMATH PHP math libraries are present. Aborting.
 // 157.36.236.212(40126) -> 2018-03-10, 7:44:37 UTC|BWWC_VERSION/BWWC_EDITION|common-function_btc_woo-util.php(21)|: Neither GMP nor BCMATH PHP math libraries are present. Aborting.
 // 157.36.195.57(34080) -> 2018-03-10, 13:00:27 UTC|BWWC_VERSION/BWWC_EDITION|class-raidiant_btc_woo-admin.php(723)|:      Generated unique bitcoin cash address: '1EeEsYM3Lgp3wcJvFiV4Hq82gkPTWQUzN2' for order_id 44
+// 157.36.195.57(36660) -> 2018-03-10, 18:08:24 UTC|BWWC_VERSION/BWWC_EDITION|class-raidiant_btc_woo-admin.php(727)|:      Generated unique bitcoin cash address: '148vBQtMtxVaytbxbD8Nxy4VxmMcozdk1Z' for order_id 45
+// 157.36.197.212(48761) -> 2018-03-11, 9:37:45 UTC|BWWC_VERSION/BWWC_EDITION|class-raidiant_btc_woo-admin.php(727)|:      Generated unique bitcoin cash address: '13MeSnrsFJPRkNrz2bgVirwGVpjd1xyGJg' for order_id 49
 END
